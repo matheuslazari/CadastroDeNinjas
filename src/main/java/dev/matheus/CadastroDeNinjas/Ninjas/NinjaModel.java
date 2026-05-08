@@ -1,5 +1,6 @@
-package dev.matheus.CadastroDeNinjas;
+package dev.matheus.CadastroDeNinjas.Ninjas;
 
+import dev.matheus.CadastroDeNinjas.Missions.MissionsModel;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,8 +14,12 @@ public class NinjaModel {
     private String email;
     private int age;
 
-    public NinjaModel(String name) {
-        this.name = name;
+    // @ManyToOne a ninja have only one mission
+    @ManyToOne
+    @JoinColumn(name = "missions_id") // Foreign Key
+    private MissionsModel missions;
+
+    public NinjaModel() {
     }
 
     public NinjaModel(String name, String email, int age) {
