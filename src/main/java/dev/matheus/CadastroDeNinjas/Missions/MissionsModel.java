@@ -2,10 +2,17 @@ package dev.matheus.CadastroDeNinjas.Missions;
 
 import dev.matheus.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Entity
 @Table(name = "tb_missions")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MissionsModel {
 
     @Id
@@ -17,37 +24,4 @@ public class MissionsModel {
     // @OneToMany one mission can have several ninjas
     @OneToMany(mappedBy = "missions")
     private List<NinjaModel> ninjas;
-
-    public MissionsModel() {
-    }
-
-    public MissionsModel(long id, String name, char difficulty) {
-        this.id = id;
-        this.name = name;
-        this.difficulty = difficulty;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public char getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(char difficulty) {
-        this.difficulty = difficulty;
-    }
 }
