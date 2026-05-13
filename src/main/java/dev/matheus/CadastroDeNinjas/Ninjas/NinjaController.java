@@ -3,30 +3,28 @@ package dev.matheus.CadastroDeNinjas.Ninjas;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
-
-
+@RequestMapping("/ninjas")
 public class NinjaController {
 
     @GetMapping("/welcome")
     public String boasVindas() {
-        return "WELCOME";
+        return "Welcome";
     }
 
      // Add ninja (CREATE)
-    @PostMapping("/add")
+    @PostMapping("/create")
     public String addNinja() {
-        return "Ninja added";
+        return "Ninja created";
     }
 
     // Show all ninjas (READ)
-    @GetMapping("/all")
-    public String showAllNinjas() {
-        return "Show Ninja";
+    @GetMapping("/list")
+    public String ninjaList() {
+        return "Ninja list";
     }
 
     // Show ninja by ID (READ)
-    @GetMapping("/allID")
+    @GetMapping("/listID")
     public String showAllNinjasByID() {
         return "Show Ninja by ID";
     }

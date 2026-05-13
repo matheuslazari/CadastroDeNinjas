@@ -15,19 +15,19 @@ public class MissionsController {
     // POST -- Send a request to create missions
     @PostMapping("/create")
     public String missionCreate() {
-        return "Mission Created with success";
+        return "Mission Created";
     }
 
     // PUT -- Send a request to change missions
     @PutMapping("/change")
     public String missionChange() {
-        return "Mission Changed with success";
+        return "Mission Changed";
     }
 
     // DELETE -- Send a request to delete missions
     @DeleteMapping("/delete")
     public String missionDelete() {
-        return "Mission Deleted with success";
+        return "Mission Deleted";
     }
 
 }
