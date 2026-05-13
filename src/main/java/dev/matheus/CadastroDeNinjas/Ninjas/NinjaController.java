@@ -1,8 +1,6 @@
 package dev.matheus.CadastroDeNinjas.Ninjas;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping
@@ -10,9 +8,39 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class NinjaController {
 
-    @GetMapping("/boasvindas")
+    @GetMapping("/welcome")
     public String boasVindas() {
-        return "Essa é minha primeira mensagem nessa rota";
+        return "WELCOME";
+    }
+
+     // Add ninja (CREATE)
+    @PostMapping("/add")
+    public String addNinja() {
+        return "Ninja added";
+    }
+
+    // Show all ninjas (READ)
+    @GetMapping("/all")
+    public String showAllNinjas() {
+        return "Show Ninja";
+    }
+
+    // Show ninja by ID (READ)
+    @GetMapping("/allID")
+    public String showAllNinjasByID() {
+        return "Show Ninja by ID";
+    }
+
+    // Change ninja data (UPDATE)
+    @PutMapping("changeID")
+    public String changeByID() {
+        return "Change Ninja by ID";
+    }
+
+    // Delete ninja (DELETE)
+    @DeleteMapping("/deleteByID")
+    public String deleteByID() {
+        return "Ninja deleted by ID";
     }
 
 }
