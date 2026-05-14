@@ -20,10 +20,10 @@ public class NinjaController {
         return "Welcome";
     }
 
-     // Add ninja (CREATE)
-    @PostMapping("/create")
-    public String addNinja() {
-        return "Ninja created";
+     // Add a new ninja (CREATE)
+    @PostMapping("/add")
+    public NinjaModel addNinja(@RequestBody NinjaModel ninja) {
+        return ninjaService.addNinja(ninja);
     }
 
     // Show all ninjas (READ)
