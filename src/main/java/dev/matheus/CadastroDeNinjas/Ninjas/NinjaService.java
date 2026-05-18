@@ -1,7 +1,5 @@
 package dev.matheus.CadastroDeNinjas.Ninjas;
-
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -9,9 +7,11 @@ import java.util.Optional;
 public class NinjaService {
 
     private NinjaRepository ninjaRepository;
+    private NinjaMapper ninjaMapper;
 
-    public NinjaService(NinjaRepository ninjaRepository) {
+    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
         this.ninjaRepository = ninjaRepository;
+        this.ninjaMapper = ninjaMapper;
     }
 
     // List all ninjas
@@ -26,8 +26,10 @@ public class NinjaService {
     }
 
     // Add a new ninja
-    public NinjaModel addNinja(NinjaModel ninja) {
-        return ninjaRepository.save(ninja);
+    public NinjaDTO addNinja(NinjaDTO ninjaDTO) {
+        NinjaModel ninja = ninjaMapper.map(ninjaDTO);
+        ninja = ninjaRepository.save(ninja);
+        return ninjaMapper.map(ninja);
     }
 
     // Delete ninja - Must be a VOID method

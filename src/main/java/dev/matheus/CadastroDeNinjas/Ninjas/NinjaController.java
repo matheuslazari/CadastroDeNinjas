@@ -1,13 +1,10 @@
 package dev.matheus.CadastroDeNinjas.Ninjas;
-
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/ninjas")
 public class NinjaController {
-
 
     private NinjaService ninjaService;
 
@@ -21,18 +18,18 @@ public class NinjaController {
     }
 
      // Add a new ninja (CREATE)
-    @PostMapping("/add")
-    public NinjaModel addNinja(@RequestBody NinjaModel ninja) {
-        return ninjaService.addNinja(ninja);
-    }
+     @PostMapping("/add")
+     public NinjaDTO addNinja(@RequestBody NinjaDTO ninja) {
+         return ninjaService.addNinja(ninja);
+     }
 
-    // Show all ninjas (READ)
+    // List all ninjas (READ)
     @GetMapping("/list")
     public List<NinjaModel> ninjaList() {
         return ninjaService.ninjaList();
     }
 
-    // Show ninja by ID (READ)
+    // List ninja by ID (READ)
     @GetMapping("/list/{id}")
     public NinjaModel listNinjaById(@PathVariable Long id) {
         return ninjaService.ninjaListById(id);
