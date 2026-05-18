@@ -30,8 +30,10 @@ public class NinjaModel {
     @Column (name = "age")
     private int age;
 
-    // @ManyToOne a ninja have only one mission
+    @Column (name = "rank")
+    private String rank;
+
     @ManyToOne
-    @JoinColumn(name = "missions_id") // Foreign Key
+    @JoinColumn(name = "missions_id")
     private MissionsModel missions;
 }
