@@ -2,6 +2,7 @@ package dev.matheus.CadastroDeNinjas.Ninjas;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class NinjaService {
@@ -14,36 +15,38 @@ public class NinjaService {
         this.ninjaMapper = ninjaMapper;
     }
 
-    // List all ninjas
-    public List<NinjaModel> ninjaList() {
-        return ninjaRepository.findAll();
+    public List<NinjaDTO> ninjaList() {
+        List<NinjaModel> ninjas = ninjaRepository.findAll();
+        return ninjas.stream()
+                .map(ninjaMapper::map)
+                .collect(Collectors.toList());
     }
 
-    //List ninjas by id
-    public NinjaModel ninjaListById(Long id) {
+    public NinjaDTO ninjaListById(Long id) {
         Optional<NinjaModel> ninjaById = ninjaRepository.findById(id);
-        return ninjaById.orElse(null);
+        return ninjaById.map(ninjaMapper::map).orElse(null);
     }
 
-    // Add a new ninja
     public NinjaDTO addNinja(NinjaDTO ninjaDTO) {
         NinjaModel ninja = ninjaMapper.map(ninjaDTO);
         ninja = ninjaRepository.save(ninja);
         return ninjaMapper.map(ninja);
     }
 
-    // Delete ninja - Must be a VOID method
     public void deleteNinjaById(Long id) {
         ninjaRepository.deleteById(id);
     }
 
-    // Modify ninja
-    public NinjaModel modifyNinjaById(Long id, NinjaModel modifiedNinja) {
-        if (ninjaRepository.existsById(id)) {
-            modifiedNinja.setId(id);
-            return ninjaRepository.save(modifiedNinja);
-        }
-        return null;
+    public NinjaDTO modifyNinjaById(Long id, NinjaDTO NinjaDTO) {
+      Optional<NinjaModel> existingNinja = ninjaRepository.findById(id);
+      if (existingNinja.isPresent()) {
+          NinjaModel updatedNinja = ninjaMapper.map(NinjaDTO);
+          updatedNinja.setId(id);
+          NinjaModel savedNinja = ninjaRepository.save(updatedNinja);
+          return ninjaMapper.map(savedNinja);
+      }
+      return null;
     }
+
 
 }
